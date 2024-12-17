@@ -4,6 +4,7 @@ import { IoCartOutline, IoSearchSharp } from 'react-icons/io5';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { navItem } from '../lib/data';
 import { NavLink } from 'react-router-dom';
+import Smcart from '../pages/Smcart';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,7 +12,8 @@ const Navbar = () => {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-
+ 
+  const [open,setopen]=useState(false);
   return (
     <div className="shadow-md py-7 px-10 bg-white relative z-10">
       {/* Navbar Content */}
@@ -37,8 +39,9 @@ const Navbar = () => {
           <FaUserPlus />
           <IoSearchSharp />
           <FaRegHeart />
-          <IoCartOutline />
+          <IoCartOutline onClick={()=>setopen(!open)} />
         </div>
+          {open && <Smcart/>}
 
         {/* Hamburger Icon (Mobile Only) */}
         <div className="md:block lg:hidden text-[24px]" onClick={toggleMenu}>
@@ -70,13 +73,14 @@ const Navbar = () => {
         </ul>
 
         {/* Icons (Mobile) */}
-        <div className="flex gap-8 p-6 text-[20px]">
+        <div className="flex gap-8 p-6 text-[20px]"onClick={toggleMenu} >
           <FaUserPlus />
           <IoSearchSharp />
           <FaRegHeart />
-          <IoCartOutline />
+          <IoCartOutline  onClick={()=>setopen(!open)} />
         </div>
       </div>
+        {open && <Smcart/>}
     </div>
   );
 };
